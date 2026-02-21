@@ -13,14 +13,6 @@ Aplicación React para resolver el challenge de Nimble.
 - Envía la postulación con `POST /api/candidate/apply-to-job`.
 - Maneja estados de carga, éxito y error.
 
-## Variables de entorno
-
-Crear un archivo `.env` a partir de este ejemplo:
-
-```bash
-VITE_REPO_URL=https://github.com/tu-usuario/tu-repo
-```
-
 ## Ejecutar en local
 
 ```bash
