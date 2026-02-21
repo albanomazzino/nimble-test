@@ -1,4 +1,4 @@
-import JobItem from './JobItem';
+import JobListing from './JobListing';
 
 function JobsList({ jobs, candidate, defaultRepoUrl, onApply }) {
   if (!jobs.length) {
@@ -8,7 +8,7 @@ function JobsList({ jobs, candidate, defaultRepoUrl, onApply }) {
   return (
     <ul className="jobs-list">
       {jobs.map((job) => (
-        <JobItem
+        <JobListing
           key={job.id}
           job={job}
           candidate={candidate}

@@ -34,6 +34,25 @@ header p {
   font-weight: 500;
 }
 
+.error-state {
+  background: #fff5f5;
+  border: 1px solid #f2b8b8;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.error-state h2 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+  color: #b42318;
+}
+
+.error-details {
+  color: #8d1f1b;
+  margin-bottom: 0;
+}
+
 .error-message {
   color: #b42318;
 }

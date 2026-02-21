@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import JobApplicationHeader from './components/JobApplicationHeader';
+import CandidateCard from './components/CandidateCard';
 import JobsList from './components/JobsList';
 import { CANDIDATE_EMAIL, DEFAULT_REPO_URL } from './config/constants';
 import { applyToJob, getCandidateByEmail, getJobs } from './services/apiClient';
@@ -34,7 +36,7 @@ function App() {
           return;
         }
 
-        setError(apiError.message || 'No se pudieron cargar los datos del candidato o de las posiciones.');
+        setError('Hubo un error al conectarse con el servidor.');
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -55,10 +57,7 @@ function App() {
 
   return (
     <main className="container">
-      <header>
-        <h1>Postulación Nimble</h1>
-        <p>Email candidato: {CANDIDATE_EMAIL}</p>
-      </header>
+      <JobApplicationHeader />
 
       {isLoading && <p className="status">Cargando datos del candidato y posiciones...</p>}
 
@@ -66,14 +65,7 @@ function App() {
 
       {!isLoading && !error && (
         <>
-          <section className="candidate-card">
-            <h2>Candidato</h2>
-            <p>
-              {candidate.firstName} {candidate.lastName}
-            </p>
-            <p>UUID: {candidate.uuid}</p>
-            <p>ID de candidato: {candidate.candidateId}</p>
-          </section>
+          <CandidateCard candidate={candidate} candidateEmail={CANDIDATE_EMAIL} />
 
           <section>
             <h2>Posiciones abiertas</h2>
@@ -91,3 +83,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

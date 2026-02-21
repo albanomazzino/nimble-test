@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
+function JobListing({ job, candidate, defaultRepoUrl, onApply }) {
   const [repoUrl, setRepoUrl] = useState(defaultRepoUrl);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ type: 'idle', message: '' });
@@ -45,6 +45,7 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
         uuid: candidate.uuid,
         candidateId: candidate.candidateId,
         jobId: job.id,
+        applicationId: candidate.applicationId,
         repoUrl: repoUrl.trim(),
       });
 
@@ -52,7 +53,7 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
     } catch (error) {
       setFeedback({
         type: 'error',
-        message: error.message || 'No se pudo enviar la postulación.',
+        message: 'Hubo un error al conectarse con el servidor.',
       });
     } finally {
       setIsSubmitting(false);
@@ -87,4 +88,4 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
   );
 }
 
-export default JobItem;
+export default JobListing;
