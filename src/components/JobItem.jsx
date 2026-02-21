@@ -24,7 +24,7 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
     if (!candidate) {
       setFeedback({
         type: 'error',
-        message: 'Candidate data is not available yet. Please wait.',
+        message: 'Los datos del candidato todavía no están disponibles. Esperá un momento.',
       });
       return;
     }
@@ -32,7 +32,7 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
     if (!isRepoUrlValid) {
       setFeedback({
         type: 'error',
-        message: 'Please enter a valid GitHub repository URL.',
+        message: 'Ingresá una URL válida de un repositorio de GitHub.',
       });
       return;
     }
@@ -48,11 +48,11 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
         repoUrl: repoUrl.trim(),
       });
 
-      setFeedback({ type: 'success', message: 'Application submitted successfully.' });
+      setFeedback({ type: 'success', message: 'Postulación enviada correctamente.' });
     } catch (error) {
       setFeedback({
         type: 'error',
-        message: error.message || 'Could not submit the application.',
+        message: error.message || 'No se pudo enviar la postulación.',
       });
     } finally {
       setIsSubmitting(false);
@@ -62,20 +62,20 @@ function JobItem({ job, candidate, defaultRepoUrl, onApply }) {
   return (
     <li className="job-item">
       <h3>{job.title}</h3>
-      <p className="job-id">Job ID: {job.id}</p>
+      <p className="job-id">ID de posición: {job.id}</p>
       <form onSubmit={handleSubmit}>
-        <label htmlFor={`repo-url-${job.id}`}>GitHub repo URL</label>
+        <label htmlFor={`repo-url-${job.id}`}>URL del repositorio en GitHub</label>
         <input
           id={`repo-url-${job.id}`}
           type="url"
-          placeholder="https://github.com/your-user/your-repo"
+          placeholder="https://github.com/tu-usuario/tu-repo"
           value={repoUrl}
           onChange={(event) => setRepoUrl(event.target.value)}
           disabled={isSubmitting}
           required
         />
         <button type="submit" disabled={isSubmitting || !candidate}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+          {isSubmitting ? 'Enviando...' : 'Enviar'}
         </button>
       </form>
       {feedback.type !== 'idle' && (

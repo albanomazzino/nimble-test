@@ -1,19 +1,27 @@
 # Nimble Test Challenge
 
-React app for Nimble's coding challenge.
+Aplicación React para resolver el challenge de Nimble.
 
-## What it does
+## ¿Qué hace?
 
-- Fetches candidate data with `GET /api/candidate/get-by-email` using `albimazzino@gmail.com`.
-- Fetches open jobs with `GET /api/jobs/get-list`.
-- Renders each job with:
-  - title
-  - GitHub repository URL input
-  - `Submit` button
-- Sends application data with `POST /api/candidate/apply-to-job`.
-- Handles loading, success and error states.
+- Obtiene los datos del candidato con `GET /api/candidate/get-by-email` usando `albimazzino@gmail.com`.
+- Obtiene posiciones abiertas con `GET /api/jobs/get-list`.
+- Muestra cada posición con:
+  - título
+  - input para URL del repositorio de GitHub
+  - botón `Enviar`
+- Envía la postulación con `POST /api/candidate/apply-to-job`.
+- Maneja estados de carga, éxito y error.
 
-## Run locally
+## Variables de entorno
+
+Crear un archivo `.env` a partir de este ejemplo:
+
+```bash
+VITE_REPO_URL=https://github.com/tu-usuario/tu-repo
+```
+
+## Ejecutar en local
 
 ```bash
 npm install

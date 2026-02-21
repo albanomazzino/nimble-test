@@ -2,7 +2,7 @@ import JobItem from './JobItem';
 
 function JobsList({ jobs, candidate, defaultRepoUrl, onApply }) {
   if (!jobs.length) {
-    return <p>No open positions available at the moment.</p>;
+    return <p>No hay posiciones abiertas en este momento.</p>;
   }
 
   return (

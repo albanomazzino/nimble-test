@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import JobsList from './components/JobsList';
-import { CANDIDATE_EMAIL } from './config/constants';
+import { CANDIDATE_EMAIL, DEFAULT_REPO_URL } from './config/constants';
 import { applyToJob, getCandidateByEmail, getJobs } from './services/apiClient';
 import './styles.css';
 
@@ -9,8 +9,6 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-
-  const defaultRepoUrl = useMemo(() => 'https://github.com/albimazzino/nimble-test', []);
 
   useEffect(() => {
     let isMounted = true;
@@ -36,7 +34,7 @@ function App() {
           return;
         }
 
-        setError(apiError.message || 'Could not load candidate or job data.');
+        setError(apiError.message || 'No se pudieron cargar los datos del candidato o de las posiciones.');
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -58,31 +56,31 @@ function App() {
   return (
     <main className="container">
       <header>
-        <h1>Nimble Job Application</h1>
-        <p>Candidate email: {CANDIDATE_EMAIL}</p>
+        <h1>Postulación Nimble</h1>
+        <p>Email candidato: {CANDIDATE_EMAIL}</p>
       </header>
 
-      {isLoading && <p className="status">Loading candidate and job data...</p>}
+      {isLoading && <p className="status">Cargando datos del candidato y posiciones...</p>}
 
       {!isLoading && error && <p className="error-message">{error}</p>}
 
       {!isLoading && !error && (
         <>
           <section className="candidate-card">
-            <h2>Candidate</h2>
+            <h2>Candidato</h2>
             <p>
               {candidate.firstName} {candidate.lastName}
             </p>
             <p>UUID: {candidate.uuid}</p>
-            <p>Candidate ID: {candidate.candidateId}</p>
+            <p>ID de candidato: {candidate.candidateId}</p>
           </section>
 
           <section>
-            <h2>Open positions</h2>
+            <h2>Posiciones abiertas</h2>
             <JobsList
               jobs={jobs}
               candidate={candidate}
-              defaultRepoUrl={defaultRepoUrl}
+              defaultRepoUrl={DEFAULT_REPO_URL}
               onApply={handleApply}
             />
           </section>
